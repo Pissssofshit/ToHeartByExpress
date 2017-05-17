@@ -60,7 +60,8 @@ public class LoginAndRegister extends AppCompatActivity implements View.OnClickL
                 replaceFragment(new SignUp_Fragment());
                 break;
             case R.id.buttonLogin:
-                Snackbar.make(v, "登录功能有待完善", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+//                Snackbar.make(v, "登录功能有待完善", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                MainActivity.StartMainActivity(this);
                 break;
             default:
                 break;
