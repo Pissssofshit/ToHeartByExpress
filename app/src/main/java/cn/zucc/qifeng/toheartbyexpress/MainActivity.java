@@ -1,5 +1,6 @@
 package cn.zucc.qifeng.toheartbyexpress;
 
+import android.content.Context;
 import android.content.Intent;
 import android.nfc.Tag;
 import android.support.design.widget.FloatingActionButton;
@@ -20,7 +21,10 @@ import static cn.zucc.qifeng.toheartbyexpress.R.layout.fragment_signup;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
-
+    public static void StartMainActivity(Context context){
+        Intent intent=new Intent(context,MainActivity.class);
+        context.startActivity(intent);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
