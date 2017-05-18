@@ -6,20 +6,23 @@
     android:layout_height="match_parent"
     tools:context="cn.zucc.qifeng.toheartbyexpress.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/contentsomething"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </FrameLayout>
-
+   <RelativeLayout
+       android:id="@+id/main_fragment"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
     <com.roughike.bottombar.BottomBar
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        app:bb_tabXmlResource="@xml/bottombar_menu">
+        app:bb_tabXmlResource="@xml/bottombar_menu"
+        >
 
     </com.roughike.bottombar.BottomBar>
+
+   </RelativeLayout>
+
+
+
 
 </RelativeLayout >
