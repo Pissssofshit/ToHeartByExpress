@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <tabs>
-    <tab
-        barColorWhenSelected="@color/cyan"
-        icon="@drawable/icon_map"
 
+    <tab
+        activeColor="@color/grenn_darker"
+        icon="@drawable/icon_share"
+        title="主页"
+        id="@+id/tab_share" />
+    <tab
+        activeColor="@color/grenn_darker"
+        icon="@drawable/icon_map"
+        title="附近"
         id="@+id/tab_map" />
     <tab
-        barColorWhenSelected="@color/cyan"
-        icon="@drawable/icon_share"
-
-        id="@+id/tab_share" />
-
-    <tab
-        barColorWhenSelected="@color/cyan"
+        activeColor="@color/grenn_darker"
         icon="@drawable/icon_me"
-
+        title="我的"
         id="@+id/tab_me" />
 
 </tabs>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,19 +10,15 @@
        android:id="@+id/main_fragment"
        android:layout_width="match_parent"
        android:layout_height="wrap_content">
+    </RelativeLayout>
+
+
     <com.roughike.bottombar.BottomBar
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        app:bb_tabXmlResource="@xml/bottombar_menu"
-        >
-
+        android:layout_height="56dp"
+        android:layout_gravity="bottom"
+        app:bb_tabXmlResource="@xml/bottombar_menu">
     </com.roughike.bottombar.BottomBar>
 
-   </RelativeLayout>
-
-
-
-
-</RelativeLayout >
+</android.support.design.widget.CoordinatorLayout >
