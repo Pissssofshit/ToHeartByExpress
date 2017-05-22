@@ -6,20 +6,27 @@
     android:layout_height="match_parent"
     tools:context="cn.zucc.qifeng.toheartbyexpress.MainActivity">
 
-   <RelativeLayout
-       android:id="@+id/main_fragment"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content">
-    </RelativeLayout>
 
-
-    <com.roughike.bottombar.BottomBar
-        android:id="@+id/bottomBar"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_gravity="bottom"
-        app:bb_tabXmlResource="@xml/bottombar_menu"
-       >
-    </com.roughike.bottombar.BottomBar>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-</android.support.design.widget.CoordinatorLayout >
+        <RelativeLayout
+            android:layout_above="@+id/bottomBar"
+            android:id="@+id/main_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="56dp"
+            ></RelativeLayout>
+
+
+        <com.roughike.bottombar.BottomBar
+            android:id="@+id/bottomBar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            app:bb_tabXmlResource="@xml/bottombar_menu"></com.roughike.bottombar.BottomBar>
+
+
+</android.support.design.widget.CoordinatorLayout>

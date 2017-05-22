@@ -15,12 +15,16 @@ import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
 
+import cn.zucc.qifeng.toheartbyexpress.ItemOfMepage.ChatFragment;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private MapFragment mapFragment;
     private MeFragment meFragment;
-    private ShareFragment shareFragment;
+    private HomepageFragment homepageFragment;
+    private ChatFragment chatFragment;
+
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
 
@@ -51,17 +55,23 @@ public class MainActivity extends AppCompatActivity {
                             fragmentTransaction.add(R.id.main_fragment, mapFragment);
                         } else fragmentTransaction.show(mapFragment);
                         break;
-                    case R.id.tab_share:
-                        if (shareFragment == null) {
-                            shareFragment = new ShareFragment();
-                            fragmentTransaction.add(R.id.main_fragment, shareFragment);
-                        } else fragmentTransaction.show(shareFragment);
+                    case R.id.tab_homepage:
+                        if (homepageFragment == null) {
+                            homepageFragment = new HomepageFragment();
+                            fragmentTransaction.add(R.id.main_fragment, homepageFragment);
+                        } else fragmentTransaction.show(homepageFragment);
                         break;
                     case R.id.tab_me:
                         if (meFragment == null) {
                             meFragment = new MeFragment();
                             fragmentTransaction.add(R.id.main_fragment, meFragment);
                         } else fragmentTransaction.show(meFragment);
+                        break;
+                    case R.id.tab_chat:
+                        if (chatFragment==null){
+                            chatFragment =new ChatFragment();
+                            fragmentTransaction.add(R.id.main_fragment,chatFragment);
+                        }else fragmentTransaction.show(chatFragment);
                         break;
                 }
                 fragmentTransaction.commit();
@@ -77,9 +87,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void hideallframgment(FragmentTransaction fragmentTransaction) {
         if (mapFragment != null) fragmentTransaction.hide(mapFragment);
-        if (shareFragment != null) fragmentTransaction.hide(shareFragment);
+        if (homepageFragment != null) fragmentTransaction.hide(homepageFragment);
         if (meFragment != null) fragmentTransaction.hide(meFragment);
-
+        if(chatFragment!=null) fragmentTransaction.hide(chatFragment);
     }
 
 }
