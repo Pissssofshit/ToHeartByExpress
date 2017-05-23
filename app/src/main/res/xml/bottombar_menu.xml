@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<tabs xmlns:android="http://schemas.android.com/apk/res/android">
-    <tab
-        id="@+id/tab_map"
-        title="map"
-        icon="@drawable/ic_map">
-    </tab>
+<tabs>
 
     <tab
-        id="@+id/tab_share"
-        title="share"
-        icon="@drawable/ic_share">
-    </tab>
-
+        activeColor="@color/grenn_darker"
+        icon="@drawable/icon_share"
+        title="主页"
+        id="@+id/tab_homepage" />
     <tab
-        id="@+id/tab_me"
-        title="me"
-        icon="@drawable/ic_me">
-    </tab>
+        activeColor="@color/grenn_darker"
+        icon="@drawable/icon_map"
+        title="附近"
+        id="@+id/tab_map" />
+    <tab
+        activeColor="@color/grenn_darker"
+        icon="@drawable/icon_chat"
+        title="聊天"
+        id="@+id/tab_chat" />
+    <tab
+        activeColor="@color/grenn_darker"
+        icon="@drawable/icon_me"
+        title="我的"
+        id="@+id/tab_me" />
+
+
 </tabs>
