@@ -3,12 +3,14 @@ package cn.zucc.qifeng.toheartbyexpress;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.IdRes;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.roughike.bottombar.BottomBar;
@@ -16,15 +18,16 @@ import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
 
 import cn.zucc.qifeng.toheartbyexpress.ItemOfMepage.ChatFragment;
+import cn.zucc.qifeng.toheartbyexpress.itemOfHomepage.PublishTask;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private static final String TAG = "MainActivity";
 
     private MapFragment mapFragment;
     private MeFragment meFragment;
     private HomepageFragment homepageFragment;
     private ChatFragment chatFragment;
-
+    FloatingActionButton pushtask;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
 
@@ -34,12 +37,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.publishtask:
+                PublishTask.Start(this);
+                break;
+        }
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
         fragmentManager = getSupportFragmentManager();
+        pushtask= (FloatingActionButton) findViewById(R.id.publishtask);
+        pushtask.setOnClickListener(this);
 
 
         BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
@@ -72,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
                             chatFragment =new ChatFragment();
                             fragmentTransaction.add(R.id.main_fragment,chatFragment);
                         }else fragmentTransaction.show(chatFragment);
+                        break;
+                    case R.id.tab_null:
                         break;
                 }
                 fragmentTransaction.commit();

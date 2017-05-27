@@ -34,7 +34,7 @@ public class HomepageFragment extends Fragment implements View.OnClickListener{
     private RecyclerView recyclerView;
     private RecyclerViewAdapter adapter;
     private List<Goods> goodses;
-    private FloatingActionButton publishtask;
+
     private Toolbar toolbar;
     private AMapLocationClient locationClient = null;
     private AMapLocationClientOption locationOption = null;
@@ -73,7 +73,7 @@ public class HomepageFragment extends Fragment implements View.OnClickListener{
     }
     private void initviewanddata(View view){
         toolbar= (Toolbar) view.findViewById(R.id.homepagetoolbar);
-        publishtask= (FloatingActionButton) view.findViewById(R.id.publishtask);
+
         LinearLayoutManager layoutManager=new LinearLayoutManager(getActivity());
         recyclerView = (RecyclerView) view.findViewById(R.id.goodsview);
         initPersonData();

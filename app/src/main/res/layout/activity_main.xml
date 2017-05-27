@@ -4,29 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cn.zucc.qifeng.toheartbyexpress.MainActivity">
+    android:clipChildren="false"
+    tools:context="cn.zucc.qifeng.toheartbyexpress.MainActivity"><![CDATA[
 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    ]]>
+
+    <RelativeLayout
+        android:id="@+id/main_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_above="@+id/bottomBar"
+        android:layout_marginBottom="56dp"
+        android:clipChildren="false"></RelativeLayout>
 
-        <RelativeLayout
-            android:layout_above="@+id/bottomBar"
-            android:id="@+id/main_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="56dp"
-            ></RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/t"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom">
 
 
         <com.roughike.bottombar.BottomBar
+
             android:id="@+id/bottomBar"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_alignParentBottom="true"
             android:layout_gravity="bottom"
-            app:bb_tabXmlResource="@xml/bottombar_menu"></com.roughike.bottombar.BottomBar>
+            android:clipChildren="false"
+            app:bb_tabXmlResource="@xml/bottombar_menu">
+
+        </com.roughike.bottombar.BottomBar>
 
 
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/publishtask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:src="@drawable/add_icon_white"
+        app:backgroundTint="@color/green"
+        app:fabSize="normal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+    </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

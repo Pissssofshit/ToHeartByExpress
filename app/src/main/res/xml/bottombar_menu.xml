@@ -12,6 +12,9 @@
         title="附近"
         id="@+id/tab_map" />
     <tab
+        id="@+id/tab_null"
+        />
+    <tab
         activeColor="@color/grenn_darker"
         icon="@drawable/icon_chat"
         title="聊天"
