@@ -54,7 +54,7 @@
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="99b355329c20be156c882d6586c555b9"></meta-data>
+            android:value="f194d07ee12c9a84ed7b17e7733ab3ea"></meta-data>
         <service android:name="com.amap.api.location.APSService"></service>
 
         <activity android:name=".LoginAndRegister">
@@ -74,6 +74,7 @@
         <activity android:name=".ItemOfMepage.My_checkupdate" />
         <activity android:name=".ItemOfMepage.My_suggestion" />
         <activity android:name=".itemOfHomepage.PublishTask"></activity>
+        <activity android:name=".gdmap.gdmap.poisearch.PoiKeywordSearchActivity"></activity>
     </application>
 
 </manifest>
