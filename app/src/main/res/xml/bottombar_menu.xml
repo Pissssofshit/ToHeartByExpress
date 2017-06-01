@@ -17,7 +17,7 @@
     <tab
         activeColor="@color/grenn_darker"
         icon="@drawable/icon_chat"
-        title="聊天"
+        title="消息"
         id="@+id/tab_chat" />
     <tab
         activeColor="@color/grenn_darker"

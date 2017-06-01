@@ -19,12 +19,12 @@ import cn.zucc.qifeng.toheartbyexpress.R;
  * Created by 80421 on 2017/5/22.
  */
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.GoodsViewHolder> {
+public class RecyclerViewAdapterForGood extends RecyclerView.Adapter<RecyclerViewAdapterForGood.GoodsViewHolder> {
     private List<Goods> goodses;
     private Context context;
 
 
-    public RecyclerViewAdapter(List<Goods> goodses, Context context) {
+    public RecyclerViewAdapterForGood(List<Goods> goodses, Context context) {
         this.goodses = goodses;
         this.context = context;
 

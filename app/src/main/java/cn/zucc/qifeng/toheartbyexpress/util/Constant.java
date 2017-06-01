@@ -10,5 +10,8 @@ public class Constant {
 
     public static String URL_Register = URL + "RegisterServlet";
     public static String URL_Login = URL + "LoginServlet";
+    public static String URL_SearchTask=URL+"SearchTask";
+    public static String postionserviceaddress="cn.zucc.qifeng.toheartbyexpress.service.postionservice";
+    public static String sendposiontservice="cn.zucc.qifeng.toheartbyexpress.service.sendpostion";
 }
 

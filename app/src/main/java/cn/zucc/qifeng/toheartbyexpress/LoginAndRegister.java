@@ -1,5 +1,6 @@
 package cn.zucc.qifeng.toheartbyexpress;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -21,8 +22,10 @@ import java.io.IOException;
 
 import cn.zucc.qifeng.toheartbyexpress.Bean.FeedBack;
 import cn.zucc.qifeng.toheartbyexpress.Bean.User;
+import cn.zucc.qifeng.toheartbyexpress.service.testservice;
 import cn.zucc.qifeng.toheartbyexpress.util.Constant;
 import cn.zucc.qifeng.toheartbyexpress.util.HttpUtil;
+import cn.zucc.qifeng.toheartbyexpress.util.isBackgroud;
 import me.drakeet.materialdialog.MaterialDialog;
 import okhttp3.Call;
 import okhttp3.Response;
@@ -33,6 +36,7 @@ public class LoginAndRegister extends AppCompatActivity implements View.OnClickL
     EditText txtloginAccount, txtloginPassword;
     FloatingActionButton tosingup;
     Button loginbutton;
+    String user_account=null,user_password=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,11 +67,11 @@ public class LoginAndRegister extends AppCompatActivity implements View.OnClickL
                 replaceFragment(new SignUp_Fragment());
                 break;
             case R.id.buttonLogin:
-                String user_account=txtloginAccount.getText().toString();
-                String user_password=txtloginPassword.getText().toString();
+                user_account=txtloginAccount.getText().toString();
+                user_password=txtloginPassword.getText().toString();
                 //方便测试用：
                 if ("".equals(user_account)&&"".equals(user_password)){
-                    MainActivity.StartMainActivity(this);
+                    MainActivity.StartMainActivity(this,user_account);
                 }
                 if(!"".equals(user_account)&&!"".equals(user_password)){
                     User userlogin = new User(user_account,user_password);
@@ -118,10 +122,10 @@ public class LoginAndRegister extends AppCompatActivity implements View.OnClickL
        runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
                 Toast.makeText(LoginAndRegister.this,response,Toast.LENGTH_LONG).show();
-                if ("登陆成功".equals(response))
-                    MainActivity.StartMainActivity(LoginAndRegister.this);
+                if ("登陆成功".equals(response)) {
+                    MainActivity.StartMainActivity(LoginAndRegister.this,user_account);
+                }
             }
         });
     }

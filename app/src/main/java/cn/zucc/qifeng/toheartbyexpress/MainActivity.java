@@ -4,10 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,22 +15,25 @@ import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
 
-import cn.zucc.qifeng.toheartbyexpress.ItemOfMepage.ChatFragment;
-import cn.zucc.qifeng.toheartbyexpress.itemOfHomepage.PublishTask;
+import cn.zucc.qifeng.toheartbyexpress.service.postionservice;
+import cn.zucc.qifeng.toheartbyexpress.service.sendpostion;
+import cn.zucc.qifeng.toheartbyexpress.util.Constant;
+import cn.zucc.qifeng.toheartbyexpress.util.isBackgroud;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends BaseActivity implements View.OnClickListener{
     private static final String TAG = "MainActivity";
 
     private MapFragment mapFragment;
     private MeFragment meFragment;
     private HomepageFragment homepageFragment;
-    private ChatFragment chatFragment;
-    FloatingActionButton pushtask;
+    private MessageFragment messageFragment;
+    private FloatingActionButton pushtask;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
-
-    public static void StartMainActivity(Context context) {
+    private String user_account=null;
+    public static void StartMainActivity(Context context,String user_account) {
         Intent intent = new Intent(context, MainActivity.class);
+        intent.putExtra("user_account",user_account);
         context.startActivity(intent);
     }
 
@@ -51,6 +52,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent intent=getIntent();
+        boolean isworkpositonserive = isBackgroud.isServiceWork(getApplicationContext(), Constant.postionserviceaddress);
+        boolean isworksendpostionservice=isBackgroud.isServiceWork(getApplicationContext(), Constant.sendposiontservice);
+        //如果服务已经启动就不再启动了
+        if (!isworkpositonserive) {
+            Intent postionsericeintent = new Intent(this,postionservice.class);
+            startService(postionsericeintent);
+        }
+        if (!isworksendpostionservice){
+            Intent sendserviceintetn=new Intent(this, sendpostion.class);
+            sendserviceintetn.putExtra("user_account",intent.getStringExtra("user_account"));
+            Log.d(TAG,intent.getStringExtra("user_account"));
+//            startService(sendserviceintetn);
+        }
+//        manager.notify(1,notification);
 
         fragmentManager = getSupportFragmentManager();
         pushtask= (FloatingActionButton) findViewById(R.id.publishtask);
@@ -83,10 +99,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         } else fragmentTransaction.show(meFragment);
                         break;
                     case R.id.tab_chat:
-                        if (chatFragment==null){
-                            chatFragment =new ChatFragment();
-                            fragmentTransaction.add(R.id.main_fragment,chatFragment);
-                        }else fragmentTransaction.show(chatFragment);
+                        if (messageFragment==null){
+                            messageFragment =new MessageFragment();
+                            fragmentTransaction.add(R.id.main_fragment,messageFragment);
+                        }else fragmentTransaction.show(messageFragment);
                         break;
                     case R.id.tab_null:
                         break;
@@ -106,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (mapFragment != null) fragmentTransaction.hide(mapFragment);
         if (homepageFragment != null) fragmentTransaction.hide(homepageFragment);
         if (meFragment != null) fragmentTransaction.hide(meFragment);
-        if(chatFragment!=null) fragmentTransaction.hide(chatFragment);
+        if(messageFragment!=null) fragmentTransaction.hide(messageFragment);
     }
 
 }

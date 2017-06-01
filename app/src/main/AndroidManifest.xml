@@ -42,6 +42,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -52,15 +53,38 @@
         android:theme="@style/AppTheme">
 
 
+        <!--<receiver android:name=".ItemOfMepage.My_address$MyReceiver"-->
+            <!--android:enabled="true"-->
+            <!--android:exported="true">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="cn.zucc.qifeng.toheartbyexpress.MylocBroadcastReceiver"></action>-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
+        <receiver android:name=".HomepageFragment$MyReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="cn.zucc.qifeng.toheartbyexpress.MylocBroadcastReceiver"></action>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".BaseActivity$notificationReceive"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="cn.seekpostionbroadcast"></action>
+            </intent-filter>
+        </receiver>
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="99b355329c20be156c882d6586c555b9"></meta-data>
-        <service android:name="com.amap.api.location.APSService"></service>
 
+        <service android:name="com.amap.api.location.APSService"></service>
+        <service android:name=".service.testservice"></service>
+        <service android:name=".service.postionservice"></service>
+        <service android:name=".service.sendpostion"></service>
         <activity android:name=".LoginAndRegister">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
@@ -73,7 +97,7 @@
         <activity android:name=".ItemOfMepage.My_address" />
         <activity android:name=".ItemOfMepage.My_checkupdate" />
         <activity android:name=".ItemOfMepage.My_suggestion" />
-        <activity android:name=".itemOfHomepage.PublishTask"></activity>
+        <activity android:name=".PublishTask"></activity>
     </application>
 
 </manifest>

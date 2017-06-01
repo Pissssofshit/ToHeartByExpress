@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="cn.hebut.toolbar2.MainActivity">
+
+    <!--
+    item中的showASACtion=ifroom那么这个item可以单独显示出来
+    如果是=never那么就是包含在3个小点点里同弹过pop的形式显示出来
+    -->
+    <item
+        android:id="@+id/item_friend"
+        android:icon="@drawable/ic_friend"
+        app:showAsAction="ifRoom"
+        android:title="好友" />
+
+</menu>
