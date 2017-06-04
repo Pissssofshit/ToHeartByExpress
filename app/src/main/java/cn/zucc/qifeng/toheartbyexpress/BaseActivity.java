@@ -25,18 +25,14 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initNotfication("test","testcontent");
+        initNotfication("嘻嘻","一段奇遇在等着你");
         intentFilter=new IntentFilter();
         intentFilter.addAction("cn.seekpostionbroadcast");
         myReceiver=new notificationReceive(){
             @Override
             public void onReceive(Context context, Intent intent) {
                 super.onReceive(context, intent);
-
-//                if (){
-//                    manager.notify(1,notification);
-//                }
-
+                manager.notify(1,notification);
             }
         };
         registerReceiver(myReceiver,intentFilter);

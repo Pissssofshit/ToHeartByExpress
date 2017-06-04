@@ -82,6 +82,7 @@
         <service android:name=".service.testservice"></service>
         <service android:name=".service.postionservice"></service>
         <service android:name=".service.sendpostion"></service>
+
         <activity android:name=".LoginAndRegister">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -97,7 +98,8 @@
         <activity android:name=".ItemOfMepage.My_address" />
         <activity android:name=".ItemOfMepage.My_checkupdate" />
         <activity android:name=".ItemOfMepage.My_suggestion" />
-        <activity android:name=".PublishTask"></activity>
+        <activity android:name=".PushTask.PublishTask"></activity>
+        <activity android:name=".PushTask.gdmap.poisearch.PoiKeywordSearchActivity"></activity>
     </application>
 
 </manifest>

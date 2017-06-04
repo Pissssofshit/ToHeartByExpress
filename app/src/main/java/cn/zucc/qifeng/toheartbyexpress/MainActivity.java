@@ -15,6 +15,7 @@ import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
 
+import cn.zucc.qifeng.toheartbyexpress.PushTask.PublishTask;
 import cn.zucc.qifeng.toheartbyexpress.service.postionservice;
 import cn.zucc.qifeng.toheartbyexpress.service.sendpostion;
 import cn.zucc.qifeng.toheartbyexpress.util.Constant;
@@ -58,7 +59,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         //如果服务已经启动就不再启动了
         if (!isworkpositonserive) {
             Intent postionsericeintent = new Intent(this,postionservice.class);
-            startService(postionsericeintent);
+//            startService(postionsericeintent);
         }
         if (!isworksendpostionservice){
             Intent sendserviceintetn=new Intent(this, sendpostion.class);

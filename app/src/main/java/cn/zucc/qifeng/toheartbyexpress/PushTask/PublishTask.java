@@ -1,4 +1,4 @@
-package cn.zucc.qifeng.toheartbyexpress;
+package cn.zucc.qifeng.toheartbyexpress.PushTask;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,9 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import cn.zucc.qifeng.toheartbyexpress.PushTask.gdmap.poisearch.PoiKeywordSearchActivity;
+import cn.zucc.qifeng.toheartbyexpress.R;
 
 
 public class PublishTask extends AppCompatActivity {
+    private TextView text;
     public static void Start(Context context){
         Intent intent=new Intent(context,PublishTask.class);
         context.startActivity(intent  );
@@ -20,12 +23,16 @@ public class PublishTask extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_publish_task);
-        Button button1= (Button) findViewById(R.id.start_map);
-        button1.setOnClickListener(new View.OnClickListener() {
+
+        text= (TextView) findViewById(R.id.publishtask_address);
+
+       // Button button1= (Button) findViewById(R.id.start_map);
+        text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
+            Intent intent=new Intent(PublishTask.this,PoiKeywordSearchActivity.class);
+                startActivityForResult(intent,1);
             }
         });
     }
@@ -37,7 +44,7 @@ public class PublishTask extends AppCompatActivity {
         {
             String address=data.getStringExtra("address");
             Log.d("publish", address);
-            TextView text= (TextView) findViewById(R.id.address);
+            //TextView text= (TextView) findViewById(R.id.publishtask_address);
             text.setText(address);
         }
     }

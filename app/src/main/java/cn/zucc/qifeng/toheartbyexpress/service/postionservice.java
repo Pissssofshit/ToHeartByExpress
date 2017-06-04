@@ -46,9 +46,9 @@ public class postionservice extends Service {
             public void run() {
                 final Intent intent=new Intent("cn.zucc.qifeng.toheartbyexpress.MylocBroadcastReceiver");
                 int i=0;
+                initLocation();
                 while (isBackgroud.isAppInForeground(mContext)) {
                     try {
-                        initLocation();
                         startLocation();
                         Log.d(TAG,loc+"");
                         intent.putExtra("loc",loc);
@@ -58,7 +58,7 @@ public class postionservice extends Service {
                             Thread.sleep(2000);
                             i++;
                         }else
-                        Thread.sleep(5000);
+                        Thread.sleep(4000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

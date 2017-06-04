@@ -29,14 +29,16 @@ import okhttp3.Response;
  * Created by 80421 on 2017/5/31.
  */
 
+//6.1需要完成
 public class sendpostion extends Service {
+
     private String result;
     private static final String TAG = "sendpostonservice";
     private Context mContext = this;
     private AMapLocationClient locationClient = null;
     private AMapLocationClientOption locationOption = null;
     private SeekTask seekTask = null;
-
+    private static int isSendbroad=0;
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -59,12 +61,19 @@ public class sendpostion extends Service {
             @Override
             public void run() {
                 final Intent intent=new Intent("cn.seekpostionbroadcast");
-                while (isBackgroud.isAppInForeground(mContext)){
+                initLocation();
+                while (isBackgroud.isAppInForeground(mContext)&&isSendbroad==0){
+                    Log.d(TAG,Thread.currentThread()+"");
+                    Log.d(TAG,"flag="+isSendbroad);
+                   //测试用
+                   // sendBroadcast(intent);
+
+                    startLocation();
                     if (seekTask != null) {
                         seekTask.setUser_account(intent.getStringExtra("user_account"));
                         Log.d(TAG,"seekTask user_account:"+seekTask.getUser_account());
                         String message=new Gson().toJson(seekTask);
-                        Log.d(TAG, "json格式的登录信息" + message);
+                        Log.d(TAG, "json格式的用户信息" + message);
                         HttpUtil.post(Constant.URL_SearchTask, message, new okhttp3.Callback() {
                             @Override
                             public void onFailure(Call call, IOException e) {
@@ -78,16 +87,24 @@ public class sendpostion extends Service {
                                 //这是在新开的一个线程里操作的
                                 String responseData = response.body().string();
                                 Log.d(TAG, responseData);
-                                FeedBack loginfeedback = new Gson().fromJson(responseData, FeedBack.class);
-//                                if("有附近的"){
-//                                    intent.putExtra();
-//                                    sendBroadcast(intent);
-//                                }
+                                 FeedBack loginfeedback = new Gson().fromJson(responseData, FeedBack.class);
+                                if("140".equals(loginfeedback.getCode())){
+                                    Log.d(TAG,"flag2="+isSendbroad);
+                                    sendBroadcast(intent);
+                                    isSendbroad=1;
+                                }
 
                             }
                         });
                     }
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
+                stopLocation();
+                destroyLocation();
             }
         }).start();
 
