@@ -90,15 +90,16 @@
             </intent-filter>
 
         </activity>
-        <activity
-            android:name=".MainActivity"
+        <activity android:name=".MainActivity"
             android:theme="@style/AppTheme" />
         <activity android:name=".ItemOfMepage.My_space" />
         <activity android:name=".ItemOfMepage.My_wallet" />
         <activity android:name=".ItemOfMepage.My_address" />
         <activity android:name=".ItemOfMepage.My_checkupdate" />
         <activity android:name=".ItemOfMepage.My_suggestion" />
-        <activity android:name=".PushTask.PublishTask"></activity>
+        <activity
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            android:name=".PushTask.PublishTask"></activity>
         <activity android:name=".PushTask.gdmap.poisearch.PoiKeywordSearchActivity"></activity>
     </application>
 

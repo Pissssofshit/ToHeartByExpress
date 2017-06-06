@@ -30,10 +30,13 @@ import cn.zucc.qifeng.toheartbyexpress.itemOfHomepage.RecyclerViewAdapterForGood
 
 public class HomepageFragment extends Fragment implements View.OnClickListener{
     private static final String TAG = "ShareFragementp";
+
+    //关于列表的
     private RecyclerView recyclerView;
     private RecyclerViewAdapterForGood adapter;
     private List<Goods> goodses;
 
+    //广播的
     private MyReceiver myReceiver;
     private IntentFilter intentFilter;
 
@@ -82,6 +85,7 @@ public class HomepageFragment extends Fragment implements View.OnClickListener{
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
+        //广播
         intentFilter=new IntentFilter();
         intentFilter.addAction("cn.zucc.qifeng.toheartbyexpress.MylocBroadcastReceiver");
         myReceiver=new MyReceiver(){
