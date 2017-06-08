@@ -68,10 +68,10 @@ public class HomepageFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.publishtask:{
-                PublishTask.Start(getActivity());
-                break;
-            }
+//            case R.id.publishtask:{
+//                PublishTask.Start(getActivity());
+//                break;
+//            }
         }
     }
     private void initviewanddata(View view){

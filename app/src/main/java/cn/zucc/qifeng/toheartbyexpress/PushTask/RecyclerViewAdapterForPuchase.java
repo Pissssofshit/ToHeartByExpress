@@ -110,7 +110,8 @@ public class RecyclerViewAdapterForPuchase extends RecyclerView.Adapter<Recycler
                 list.get(position).setPrice(Double.valueOf(price));
             }
         });
-        holder.setIsRecyclable(false);
+        //
+       // holder.setIsRecyclable(false);
     }
 
     @Override

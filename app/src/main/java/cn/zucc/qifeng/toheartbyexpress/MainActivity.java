@@ -42,7 +42,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.publishtask:
-                PublishTask.Start(this);
+                PublishTask.Start(this,user_account);
                 break;
         }
 
@@ -54,19 +54,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         setContentView(R.layout.activity_main);
 
         Intent intent=getIntent();
+        user_account=intent.getStringExtra("user_account");
         boolean isworkpositonserive = isBackgroud.isServiceWork(getApplicationContext(), Constant.postionserviceaddress);
         boolean isworksendpostionservice=isBackgroud.isServiceWork(getApplicationContext(), Constant.sendposiontservice);
         //如果服务已经启动就不再启动了
         if (!isworkpositonserive) {
             Intent postionsericeintent = new Intent(this,postionservice.class);
-//            startService(postionsericeintent);
+            startService(postionsericeintent);
         }
         if (!isworksendpostionservice){
             Intent sendserviceintetn=new Intent(this, sendpostion.class);
             sendserviceintetn.putExtra("user_account",intent.getStringExtra("user_account"));
             Log.d(TAG,intent.getStringExtra("user_account"));
-//            startService(sendserviceintetn);
+            startService(sendserviceintetn);
         }
+         //发送通知栏
 //        manager.notify(1,notification);
 
         fragmentManager = getSupportFragmentManager();

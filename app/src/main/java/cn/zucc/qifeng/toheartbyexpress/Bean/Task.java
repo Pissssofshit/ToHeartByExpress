@@ -3,7 +3,8 @@ package cn.zucc.qifeng.toheartbyexpress.Bean;
 import java.util.List;
 
 /**
- * Created by 80421 on 2017/6/6.
+ * String user_account
+ *
  */
 
 public class Task {
@@ -12,12 +13,12 @@ public class Task {
     private String user_address;
     private String user_phone;
 
-    private List<PurcharsedGoods> purcharseList;
+    private List<PurchaseItem> purcharseList;
     private double sum;
     private double longitude;
     private double latitude;
 
-    public Task(String user_account, String user_address, String user_phone, List<PurcharsedGoods> purcharseList, double sum, double longitude, double latitude) {
+    public Task(String user_account, String user_address, String user_phone, List<PurchaseItem> purcharseList, double sum, double longitude, double latitude) {
         this.user_account = user_account;
         this.user_address = user_address;
         this.user_phone = user_phone;
@@ -54,11 +55,11 @@ public class Task {
         this.user_phone = user_phone;
     }
 
-    public List<PurcharsedGoods> getPurcharseList() {
+    public List<PurchaseItem> getPurcharseList() {
         return purcharseList;
     }
 
-    public void setPurcharseList(List<PurcharsedGoods> purcharseList) {
+    public void setPurcharseList(List<PurchaseItem> purcharseList) {
         this.purcharseList = purcharseList;
     }
 

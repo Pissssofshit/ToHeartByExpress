@@ -6,12 +6,14 @@ package cn.zucc.qifeng.toheartbyexpress.util;
 
 
 public class Constant {
-    public static String URL = "http://10.70.11.172:8080/ServletTest/"; // IP地址请改为你自己的IP
+    public static final String URL = "http://10.70.11.172:8080/ServletTest/"; // IP地址请改为你自己的IP
 
-    public static String URL_Register = URL + "RegisterServlet";
-    public static String URL_Login = URL + "LoginServlet";
-    public static String URL_SearchTask=URL+"SearchTask";
-    public static String postionserviceaddress="cn.zucc.qifeng.toheartbyexpress.service.postionservice";
-    public static String sendposiontservice="cn.zucc.qifeng.toheartbyexpress.service.sendpostion";
+    public static final String URL_Register = URL + "RegisterServlet";
+    public static final String URL_Login = URL + "LoginServlet";
+    public static final String URL_SearchTask=URL+"SearchTask";
+    public static final String URL_PublishTask="PublishTask";
+    public static final String postionserviceaddress="cn.zucc.qifeng.toheartbyexpress.service.postionservice";
+    public static final String sendposiontservice="cn.zucc.qifeng.toheartbyexpress.service.sendpostion";
+
 }
 

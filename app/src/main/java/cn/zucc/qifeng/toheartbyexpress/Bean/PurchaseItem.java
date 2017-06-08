@@ -7,8 +7,8 @@ package cn.zucc.qifeng.toheartbyexpress.Bean;
 public class PurchaseItem {
     private String name;
     private String details;
-    private int number;
-    private double price;
+    private int number=0;
+    private double price=0;
 
     public PurchaseItem() {
 
