@@ -13,6 +13,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,6 +44,7 @@ import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
 import com.amap.api.services.poisearch.PoiSearch.OnPoiSearchListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.zucc.qifeng.toheartbyexpress.R;
@@ -51,12 +53,9 @@ import cn.zucc.qifeng.toheartbyexpress.PushTask.gdmap.util.AMapUtil;
 import cn.zucc.qifeng.toheartbyexpress.PushTask.gdmap.util.ToastUtil;
 
 
-/**
- * AMapV1地图中简单介绍poisearch搜索
- */
 public class PoiKeywordSearchActivity extends FragmentActivity implements
-        OnMarkerClickListener, InfoWindowAdapter, TextWatcher,
-        OnPoiSearchListener, OnClickListener, InputtipsListener,GeocodeSearch.OnGeocodeSearchListener {
+		OnMarkerClickListener, InfoWindowAdapter, TextWatcher,
+		OnPoiSearchListener, OnClickListener, InputtipsListener,GeocodeSearch.OnGeocodeSearchListener {
 	private AMap aMap;
 	private AutoCompleteTextView searchText;// 输入搜索关键字
 	private String keyWord = "";// 要输入的poi搜索关键字
@@ -142,7 +141,7 @@ public class PoiKeywordSearchActivity extends FragmentActivity implements
 		if(position!=null) {
 
 			LatLonPoint tmp= new LatLonPoint(position.latitude,position.longitude);
-			RegeocodeQuery query = new RegeocodeQuery(tmp, 50, GeocodeSearch.AMAP);
+			RegeocodeQuery query = new RegeocodeQuery(tmp, 50,GeocodeSearch.AMAP);
 			geocoderSearch.getFromLocationAsyn(query);
 			Log.d("ss","excuse me??00");
 
@@ -161,12 +160,14 @@ public class PoiKeywordSearchActivity extends FragmentActivity implements
 						+ "附近";
 				Intent intent=new Intent();
 				intent.putExtra("address",addressName);
+				intent.putExtra("latitude",""+position.latitude);
+				intent.putExtra("longtitude",""+position.longitude);
 				Log.d("regeo", addressName);
 
 				setResult(RESULT_OK,intent);
 				finish();
-		}
-		else {
+			}
+			else {
 			}
 		} else {
 		}
@@ -236,7 +237,7 @@ public class PoiKeywordSearchActivity extends FragmentActivity implements
 		ImageButton button = (ImageButton) view
 				.findViewById(R.id.start_amap_app);
 		// 调起高德地图app
-		button.setOnClickListener(new OnClickListener() {
+		button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				startAMapNavi(marker);
@@ -330,7 +331,7 @@ public class PoiKeywordSearchActivity extends FragmentActivity implements
 
 	@Override
 	public void beforeTextChanged(CharSequence s, int start, int count,
-                                  int after) {
+								  int after) {
 		Log.d("test","beforetextchanged");
 	}
 
@@ -339,10 +340,10 @@ public class PoiKeywordSearchActivity extends FragmentActivity implements
 		Log.d("test","ontextchanged");
 		String newText = s.toString().trim();
 		if (!AMapUtil.IsEmptyOrNullString(newText)) {
-		    InputtipsQuery inputquery = new InputtipsQuery(newText, editCity.getText().toString());
-		    Inputtips inputTips = new Inputtips(PoiKeywordSearchActivity.this, inputquery);
-		    inputTips.setInputtipsListener(this);
-		    inputTips.requestInputtipsAsyn();
+			InputtipsQuery inputquery = new InputtipsQuery(newText, editCity.getText().toString());
+			Inputtips inputTips = new Inputtips(PoiKeywordSearchActivity.this, inputquery);
+			inputTips.setInputtipsListener(this);
+			inputTips.requestInputtipsAsyn();
 		}
 	}
 
@@ -387,7 +388,7 @@ public class PoiKeywordSearchActivity extends FragmentActivity implements
 		}
 
 	}
-	
+
 	@Override
 	public void onPoiItemSearched(PoiItem item, int rCode) {
 		// TODO Auto-generated method stub
@@ -401,22 +402,22 @@ public class PoiKeywordSearchActivity extends FragmentActivity implements
 	public void onClick(View v) {
 		Log.d("test","onclick");
 		switch (v.getId()) {
-		/**
-		 * 点击搜索按钮
-		 */
-		case R.id.searchButton:
-			searchButton();
-			break;
-		/**
-		 * 点击下一页按钮
-		 */
-		case R.id.nextButton:
-			nextButton();
-			break;
-		case R.id.decides:
-			decide_button();
-		default:
-			break;
+			/**
+			 * 点击搜索按钮
+			 */
+			case R.id.searchButton:
+				searchButton();
+				break;
+			/**
+			 * 点击下一页按钮
+			 */
+			case R.id.nextButton:
+				nextButton();
+				break;
+			case R.id.decides:
+				decide_button();
+			default:
+				break;
 		}
 	}
 
@@ -424,19 +425,19 @@ public class PoiKeywordSearchActivity extends FragmentActivity implements
 
 	@Override
 	public void onGetInputtips(List<Tip> tipList, int rCode) {
-//		if (rCode == AMapException.CODE_AMAP_SUCCESS) {// 正确返回
-//			List<String> listString = new ArrayList<String>();
-//			for (int i = 0; i < tipList.size(); i++) {
-//				listString.add(tipList.get(i).getName());
-//			}
-//			ArrayAdapter<String> aAdapter = new ArrayAdapter<String>(
-//					getApplicationContext(),
-//					R.layout.route_inputs, listString);
-//			searchText.setAdapter(aAdapter);
-//			aAdapter.notifyDataSetChanged();
-//		} else {
-//			ToastUtil.showerror(this, rCode);
-//		}
-//
+		if (rCode == AMapException.CODE_AMAP_SUCCESS) {// 正确返回
+			List<String> listString = new ArrayList<String>();
+			for (int i = 0; i < tipList.size(); i++) {
+				listString.add(tipList.get(i).getName());
+			}
+			ArrayAdapter<String> aAdapter = new ArrayAdapter<String>(
+					getApplicationContext(),
+					R.layout.route_inputs, listString);
+			searchText.setAdapter(aAdapter);
+			aAdapter.notifyDataSetChanged();
+		} else {
+			ToastUtil.showerror(this, rCode);
+		}
+
 	}
 }

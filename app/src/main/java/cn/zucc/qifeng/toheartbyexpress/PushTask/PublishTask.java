@@ -46,7 +46,7 @@ public class PublishTask extends AppCompatActivity implements View.OnClickListen
     private double summoney = 0;
 
     private Dialog thisdialog;
-
+    private double longtitude = 0, latitude = 0;
     private List<PurchaseItem> list;
     private RecyclerView recyclerView;
     private RecyclerViewAdapterForPuchase adapterForPuchase;
@@ -116,7 +116,7 @@ public class PublishTask extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.purchase_delteitem:
                 makeText(this, list.size() + "", LENGTH_SHORT).show();
-                adapterForPuchase.notifyItemRemoved(list.size()-1);
+                adapterForPuchase.notifyItemRemoved(list.size() - 1);
                 list.remove(list.size() - 1);
 
                 //它这个好像是从1开始算的
@@ -124,7 +124,7 @@ public class PublishTask extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.publishtask_button:
 
-                double jd = 0, wd = 0;
+
                 double summoney = 0;
                 for (int i = 0; i < list.size(); i++) {
                     PurchaseItem goods = list.get(i);
@@ -133,33 +133,36 @@ public class PublishTask extends AppCompatActivity implements View.OnClickListen
                     }
                 }
 
-                Task task = new Task(getIntent().getStringExtra("user_account"), address.getText().toString(), phone.getText().toString()
-                        , list, summoney, jd, wd);
+                if (longtitude == 0 && latitude == 0) {
+                    Toast.makeText(this, "请输入购买地址", Toast.LENGTH_SHORT).show();
+                } else {
+                    Task task = new Task(getIntent().getStringExtra("user_account"), address.getText().toString(), phone.getText().toString()
+                            , list, summoney, longtitude, latitude);
 
-                //向客户端发送信息
-                String message = new Gson().toJson(task);
-                HttpUtil.post(Constant.URL_PublishTask, message, new okhttp3.Callback() {
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                        //队出现异常的操作
-                        Log.w(TAG, "onFailure: " + e.getMessage());
-                        createmydialog("发布失败");
-                    }
-
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        //对服务器返回的具体进行操作
-                        //这是在新开的一个线程里操作的
-                        String responseData = response.body().string();
-                        FeedBack loginfeedback = new Gson().fromJson(responseData, FeedBack.class);
-                        if (loginfeedback.getCode() == 138)
-                            createmydialog("发布成功");
-                        else
+                    //向客户端发送信息
+                    String message = new Gson().toJson(task);
+                    HttpUtil.post(Constant.URL_PublishTask, message, new okhttp3.Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+                            //队出现异常的操作
+                            Log.w(TAG, "onFailure: " + e.getMessage());
                             createmydialog("发布失败");
+                        }
 
-                    }
-                });
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            //对服务器返回的具体进行操作
+                            //这是在新开的一个线程里操作的
+                            String responseData = response.body().string();
+                            FeedBack loginfeedback = new Gson().fromJson(responseData, FeedBack.class);
+                            if (loginfeedback.getCode() == 138)
+                                createmydialog("发布成功");
+                            else if (loginfeedback.getCode() == 128)
+                                createmydialog("发布失败,已有类似任务");
 
+                        }
+                    });
+                }
 
                 break;
         }
@@ -202,8 +205,11 @@ public class PublishTask extends AppCompatActivity implements View.OnClickListen
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             String address = data.getStringExtra("address");
-            Log.d("publish", address);
-            //TextView text= (TextView) findViewById(R.id.publishtask_address);
+//            Log.d("publish", address);
+//            Log.d(TAG+"latitude",data.getStringExtra("latitude"));
+//            Log.d(TAG+"longtitude",data.getStringExtra("longtitude"));
+            longtitude = Double.valueOf(data.getStringExtra("latitude"));
+            latitude = Double.valueOf(data.getStringExtra("longtitude"));
             text.setText(address);
         }
     }
