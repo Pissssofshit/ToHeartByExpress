@@ -80,6 +80,8 @@ public class LoginAndRegister extends AppCompatActivity implements View.OnClickL
                 loginDialog.show();
                 user_account = txtloginAccount.getText().toString();
                 user_password = txtloginPassword.getText().toString();
+                //for test
+                Toast.makeText(this,"account:aaa"+"password:abc",Toast.LENGTH_SHORT).show();
                 //方便测试用：
                 if ("aaa".equals(user_account) && "abc".equals(user_password)) {
                     editor=saved.edit();

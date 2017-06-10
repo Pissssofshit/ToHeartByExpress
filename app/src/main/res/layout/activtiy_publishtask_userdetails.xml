@@ -81,7 +81,7 @@
                 android:layout_toLeftOf="@+id/imageView2"
                 android:layout_toStartOf="@+id/imageView2"
                 android:layout_weight="1"
-                android:gravity="end"
+                android:gravity="end|center"
                 android:padding="10dp"
                 android:text="请选择"
                 android:textSize="14dp" />
@@ -120,12 +120,14 @@
             android:textSize="16dp" />
 
         <RelativeLayout
+            android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="30dp"
             android:layout_weight="1">
 
             <TextView
+
                 android:id="@+id/userdetails_streettv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -134,7 +136,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_toLeftOf="@+id/imageView"
                 android:layout_weight="1"
-                android:gravity="end"
+                android:gravity="end|center"
                 android:padding="10dp"
                 android:paddingRight="30dp"
                 android:text="请选择"
