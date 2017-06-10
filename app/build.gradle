@@ -19,6 +19,11 @@ android {
     }
     sourceSets {
         main {
+            res.srcDirs =
+                    [
+                            'src/main/res/layout/Item',
+                            'src/main/res'
+                    ]
             jniLibs.srcDirs = ['libs']
         }
     }

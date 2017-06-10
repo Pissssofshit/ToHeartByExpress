@@ -18,11 +18,11 @@ public class Task {
     private double longitude;
     private double latitude;
     private String deadline;
-
+    private String storename;
 
 
     public Task(String user_account, String user_address, String user_phone, List<PurchaseItem> purcharseList,
-                double sum, double longitude, double latitude,String deadline) {
+                double sum, double longitude, double latitude,String deadline,String storename) {
         this.user_account = user_account;
         this.user_address = user_address;
         this.user_phone = user_phone;
@@ -31,11 +31,19 @@ public class Task {
         this.longitude = longitude;
         this.latitude = latitude;
         this.deadline=deadline;
+        this.storename=storename;
     }
 
     public Task() {
     }
 
+    public String getStorename() {
+        return storename;
+    }
+
+    public void setStorename(String storename) {
+        this.storename = storename;
+    }
     public String getUser_account() {
         return user_account;
     }

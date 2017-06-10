@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,14 +46,17 @@ public class PublishTask extends AppCompatActivity implements View.OnClickListen
 
     private String thisname = "ComponentInfo{cn.zucc.qifeng.toheartbyexpress/cn.zucc.qifeng.toheartbyexpress.PushTask.PublishTask}";
     private TextView text;//购买地址
-    private TextView address, phone, sum,deadline;
+    private TextView address, phone, sum, deadline;
+    private String deadlinemessage="";
     private Intent intent;
+    private EditText storename;
 
     private Dialog thisdialog;
     private double longtitude = 0, latitude = 0;
     private List<PurchaseItem> list;
     private RecyclerView recyclerView;
     private RecyclerViewAdapterForPuchase adapterForPuchase;
+
 
     private Button additem, deleteitem, publishtask;
     private CardView cradview;
@@ -103,11 +108,21 @@ public class PublishTask extends AppCompatActivity implements View.OnClickListen
             longtitude = Double.valueOf(data.getStringExtra("latitude"));
             latitude = Double.valueOf(data.getStringExtra("longtitude"));
             text.setText(address);
-        }
-        else if (resultCode==2){
-            Bundle userdetails=data.getBundleExtra("userdetails");
-            String s=userdetails.get("phone").toString();
-            Toast.makeText(this,s,Toast.LENGTH_SHORT).show();
+        } else if (resultCode == 2) {
+            Bundle userdetails = data.getBundleExtra("userdetails");
+            String userphone = userdetails.get("phone").toString();
+            String usercity = userdetails.get("city").toString();
+            String userstreet = userdetails.get("street").toString();
+            String useraddress = userdetails.get("address").toString();
+            String finishhour = userdetails.get("finishhour").toString();
+            String finishminutes = userdetails.get("finishminutes").toString();
+            String date=userdetails.get("date").toString();
+            if (!"".equals(finishhour) && !"请选择".equals(usercity) && !"请选择".equals(userstreet)) {
+                phone.setText(userphone);
+                deadlinemessage=date +"a"+finishhour + "b" + finishminutes;
+                deadline.setText(date + finishhour + ":" + finishminutes + "前");
+                address.setText(usercity + userstreet + useraddress);
+            }
         }
     }
 
@@ -126,8 +141,8 @@ public class PublishTask extends AppCompatActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.publishtask_userdetails:
                 //进入收货详细页面中去
-                intent=new Intent(PublishTask.this,UserDetails.class);
-                startActivityForResult(intent,2);
+                intent = new Intent(PublishTask.this, UserDetails.class);
+                startActivityForResult(intent, 2);
                 break;
             case R.id.publishtask_address:
                 intent = new Intent(PublishTask.this, PoiKeywordSearchActivity.class);
@@ -163,42 +178,39 @@ public class PublishTask extends AppCompatActivity implements View.OnClickListen
                 if (longtitude == 0 && latitude == 0) {
                     Toast.makeText(this, "请输入购买地址", Toast.LENGTH_SHORT).show();
                 } else {
-                    if ( "详细地址".equals(address.getText().toString())){
-                        Toast.makeText(this,"请输入收货地址",Toast.LENGTH_SHORT).show();
-                    }
-                    else if ("电话号码".equals(phone.getText().toString())){
-                        Toast.makeText(this,"请输入电话号码",Toast.LENGTH_SHORT).show();
-                    }
-                    else if ("最迟日期".equals(deadline.getText().toString())){
-                        Toast.makeText(this,"请输入最迟日期",Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                    Task task = new Task(getIntent().getStringExtra("user_account"), address.getText().toString(), phone.getText().toString()
-                            , list, summoney, longtitude, latitude,deadline.getText().toString());
+                    if ("详细地址".equals(address.getText().toString())) {
+                        Toast.makeText(this, "请输入收货地址", Toast.LENGTH_SHORT).show();
+                    } else if ("电话号码".equals(phone.getText().toString())) {
+                        Toast.makeText(this, "请输入电话号码", Toast.LENGTH_SHORT).show();
+                    } else if ("最迟日期".equals(deadline.getText().toString())) {
+                        Toast.makeText(this, "请输入最迟日期", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Task task = new Task(getIntent().getStringExtra("user_account"), address.getText().toString(), phone.getText().toString()
+                                , list, summoney, longtitude, latitude, deadlinemessage, storename.getText().toString());
 
-                    //向客户端发送信息
-                    String message = new Gson().toJson(task);
-                    HttpUtil.post(Constant.URL_PublishTask, message, new okhttp3.Callback() {
-                        @Override
-                        public void onFailure(Call call, IOException e) {
-                            //队出现异常的操作
-                            Log.w(TAG, "onFailure: " + e.getMessage());
-                            createmydialog("发布失败");
-                        }
+                        //向客户端发送信息
+                        String message = new Gson().toJson(task);
+                        HttpUtil.post(Constant.URL_PublishTask, message, new okhttp3.Callback() {
+                            @Override
+                            public void onFailure(Call call, IOException e) {
+                                //队出现异常的操作
+                                Log.w(TAG, "onFailure: " + e.getMessage());
+                                createmydialog("发布失败");
+                            }
 
-                        @Override
-                        public void onResponse(Call call, Response response) throws IOException {
-                            //对服务器返回的具体进行操作
-                            //这是在新开的一个线程里操作的
-                            String responseData = response.body().string();
-                            FeedBack loginfeedback = new Gson().fromJson(responseData, FeedBack.class);
-                            if (loginfeedback.getCode() == 138)
-                                createmydialog("发布成功");
-                            else if (loginfeedback.getCode() == 128)
-                                createmydialog("发布失败,已有类似任务");
+                            @Override
+                            public void onResponse(Call call, Response response) throws IOException {
+                                //对服务器返回的具体进行操作
+                                //这是在新开的一个线程里操作的
+                                String responseData = response.body().string();
+                                FeedBack loginfeedback = new Gson().fromJson(responseData, FeedBack.class);
+                                if (loginfeedback.getCode() == 138)
+                                    createmydialog("发布成功");
+                                else if (loginfeedback.getCode() == 128)
+                                    createmydialog("发布失败,已有类似任务");
 
-                        }
-                    });
+                            }
+                        });
                     }
                 }
 
@@ -208,7 +220,7 @@ public class PublishTask extends AppCompatActivity implements View.OnClickListen
     }
 
     private void initview() {
-        cradview= (CardView) findViewById(R.id.publishtask_userdetails);
+        cradview = (CardView) findViewById(R.id.publishtask_userdetails);
         cradview.setOnClickListener(this);
 
         publishtask = (Button) findViewById(R.id.publishtask_button);
@@ -217,10 +229,12 @@ public class PublishTask extends AppCompatActivity implements View.OnClickListen
         phone = (TextView) findViewById(R.id.publishtask_phone);
         address = (TextView) findViewById(R.id.publishtask_locaddress);
         sum = (TextView) findViewById(R.id.publishtask_sum);
-        deadline= (TextView) findViewById(R.id.publishtask_deadline);
+        deadline = (TextView) findViewById(R.id.publishtask_deadline);
 
         text = (TextView) findViewById(R.id.publishtask_address);
         text.setOnClickListener(this);
+
+        storename = (EditText) findViewById(R.id.publishtask_storename);
 
         additem = (Button) findViewById(R.id.purchase_additem);
         additem.setOnClickListener(this);

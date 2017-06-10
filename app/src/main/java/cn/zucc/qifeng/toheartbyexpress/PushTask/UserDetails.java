@@ -2,10 +2,12 @@ package cn.zucc.qifeng.toheartbyexpress.PushTask;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -21,7 +23,11 @@ public class UserDetails extends AppCompatActivity implements View.OnClickListen
     private Spinner spinner;
     private LinearLayout citylayout, streetlayout;
     private TextView city, street;
-    private EditText address, starthour, startminutes, finishhour, finishminute;
+    private EditText phone, address,finishhour, finishminute;
+    private Button save;
+    private SharedPreferences saveuserinformation;
+    private SharedPreferences.Editor editor;
+    private String savedphone, savedcity, savedstreet, savedaddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +54,30 @@ public class UserDetails extends AppCompatActivity implements View.OnClickListen
             case R.id.userdetails_streetlayout:
                 Toast.makeText(UserDetails.this, "街道", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.userdetails_save:
+                //储存本次操作的内容
+                editor = saveuserinformation.edit();
+                editor.putString("phone", phone.getText().toString());
+                editor.putString("city", city.getText().toString());
+                editor.putString("street", street.getText().toString());
+                editor.putString("address", address.getText().toString());
+                editor.commit();
+
+                //返回到上个地方
+                userdetails = new Bundle();
+                userdetails.putString("phone", phone.getText().toString());
+                userdetails.putString("city", city.getText().toString());
+                userdetails.putString("street", street.getText().toString());
+                userdetails.putString("address", address.getText().toString());
+                userdetails.putString("finishhour", finishhour.getText().toString());
+                userdetails.putString("finishminutes", finishhour.getText().toString());
+                userdetails.putString("date",spinner.getSelectedItem().toString());
+                intent = new Intent(UserDetails.this, PublishTask.class);
+                intent.putExtra("userdetails", userdetails);
+                setResult(2, intent);
+                finish();
+                //Toast.makeText(this, phone.getText().toString(), Toast.LENGTH_SHORT).show();
+                break;
         }
     }
 
@@ -62,8 +92,7 @@ public class UserDetails extends AppCompatActivity implements View.OnClickListen
 
         spinner.setAdapter(arrayAdapter);//显示今天 明天
 
-        starthour = (EditText) findViewById(R.id.userdetails_starthour);
-        startminutes = (EditText) findViewById(R.id.userdetails_startminutes);
+
         finishhour = (EditText) findViewById(R.id.userdetails_finishhour);
         finishminute = (EditText) findViewById(R.id.userdetails_finishhour);
 
@@ -78,6 +107,24 @@ public class UserDetails extends AppCompatActivity implements View.OnClickListen
 
         //address
         address = (EditText) findViewById(R.id.userdetails_address);
+        //
+        phone = (EditText) findViewById(R.id.userdetails_phone);
+        //
+        save = (Button) findViewById(R.id.userdetails_save);
+        save.setOnClickListener(this);
+        //get默认值
+        saveuserinformation = getSharedPreferences("userpublishtaskaddress", Context.MODE_PRIVATE);
+        savedphone = saveuserinformation.getString("phone", "");
+        savedcity = saveuserinformation.getString("city", "请选择");
+        savedstreet = saveuserinformation.getString("street", "请选择");
+        savedaddress = saveuserinformation.getString("address", "");
+        //设置默认值
+        phone.setText(savedphone);
+        city.setText(savedcity);
+        street.setText(savedstreet);
+        if (!"".equals(savedaddress)) {
+            address.setText(savedaddress);
+        }
 
 
     }

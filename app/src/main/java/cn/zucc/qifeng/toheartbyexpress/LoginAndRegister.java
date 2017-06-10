@@ -2,6 +2,7 @@ package cn.zucc.qifeng.toheartbyexpress;
 
 import android.app.Dialog;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -44,7 +45,8 @@ public class LoginAndRegister extends AppCompatActivity implements View.OnClickL
     private Button loginbutton;
     private String user_account = null, user_password = null;
     private Dialog loginDialog;
-
+    private SharedPreferences saved;
+    private SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,10 +81,17 @@ public class LoginAndRegister extends AppCompatActivity implements View.OnClickL
                 user_account = txtloginAccount.getText().toString();
                 user_password = txtloginPassword.getText().toString();
                 //方便测试用：
-                if ("".equals(user_account) && "".equals(user_password)) {
-                    loginDialog.dismiss();
-                    MainActivity.StartMainActivity(this, user_account);
+                if ("aaa".equals(user_account) && "abc".equals(user_password)) {
+                    editor=saved.edit();
+                    //为了测试方便保存账号名与密码
+                    editor.putString("account",user_account);
+                    editor.putString("password",user_password);
+                    editor.commit();
 
+                    loginDialog.dismiss();
+
+
+                    MainActivity.StartMainActivity(this, user_account);
                 } else {
                     if (!"".equals(user_account) && !"".equals(user_password)) {
                         User userlogin = new User(user_account, user_password);
@@ -133,6 +142,15 @@ public class LoginAndRegister extends AppCompatActivity implements View.OnClickL
         forgotPassword.setOnClickListener(this);
         loginbutton.setOnClickListener(this);
         tosingup.setOnClickListener(this);
+
+        //设置默认 test完成后需要改
+        saved=getSharedPreferences("userlogin", Context.MODE_PRIVATE);
+
+        String myaccount=saved.getString("account","");
+        String mypassword=saved.getString("password","");
+
+        txtloginAccount.setText(myaccount);
+        txtloginPassword.setText(mypassword);
     }
 
     private void showResponse(final String response) {
