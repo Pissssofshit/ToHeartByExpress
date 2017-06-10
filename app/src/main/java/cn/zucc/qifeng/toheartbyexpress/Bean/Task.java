@@ -17,8 +17,12 @@ public class Task {
     private double sum;
     private double longitude;
     private double latitude;
+    private String deadline;
 
-    public Task(String user_account, String user_address, String user_phone, List<PurchaseItem> purcharseList, double sum, double longitude, double latitude) {
+
+
+    public Task(String user_account, String user_address, String user_phone, List<PurchaseItem> purcharseList,
+                double sum, double longitude, double latitude,String deadline) {
         this.user_account = user_account;
         this.user_address = user_address;
         this.user_phone = user_phone;
@@ -26,6 +30,7 @@ public class Task {
         this.sum = sum;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.deadline=deadline;
     }
 
     public Task() {
@@ -86,5 +91,11 @@ public class Task {
     public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
+    public String getDeadline() {
+        return deadline;
+    }
 
+    public void setDeadline(String deadline) {
+        this.deadline = deadline;
+    }
 }

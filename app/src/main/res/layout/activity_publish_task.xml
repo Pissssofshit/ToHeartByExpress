@@ -34,6 +34,7 @@
     </RelativeLayout>
 
     <android.support.v7.widget.CardView
+        android:id="@+id/publishtask_userdetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -42,11 +43,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="vertical">
+
             <LinearLayout
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/publishtask_phone"
@@ -57,14 +59,22 @@
                     android:text="电话号码" />
 
                 <TextView
-                    android:id="@+id/publishtask_locaddress"
+                    android:id="@+id/publishtask_deadline"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:text="详细地址" />
+                    android:text="最迟日期" />
 
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/publishtask_locaddress"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="详细地址" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
@@ -127,36 +137,37 @@
                     android:layout_marginLeft="10dp"
                     android:text="商品列表："
                     android:textSize="20dp" />
+
                 <Button
                     android:id="@+id/purchase_additem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="添加"
                     android:layout_alignParentTop="true"
+                    android:layout_marginEnd="13dp"
+                    android:layout_marginRight="13dp"
                     android:layout_toLeftOf="@+id/purchase_delteitem"
                     android:layout_toStartOf="@+id/purchase_delteitem"
-                    android:layout_marginRight="13dp"
-                    android:layout_marginEnd="13dp" />
+                    android:text="添加" />
 
                 <Button
                     android:id="@+id/purchase_delteitem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="删除"
-                    android:textColor="#ef5350"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="12dp"
                     android:layout_marginRight="12dp"
-                    android:layout_marginEnd="12dp" />
+                    android:text="删除"
+                    android:textColor="#ef5350" />
             </RelativeLayout>
 
             <android.support.v7.widget.RecyclerView
-                android:descendantFocusability="beforeDescendants"
                 android:id="@+id/purchaselistview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:descendantFocusability="beforeDescendants">
 
             </android.support.v7.widget.RecyclerView>
         </LinearLayout>
