@@ -7,6 +7,7 @@ package cn.zucc.qifeng.toheartbyexpress.Bean;
 public class FeedBack {
     private int code;
     private String message;
+<<<<<<< HEAD
 
 
 
@@ -24,6 +25,13 @@ public class FeedBack {
 
     public void setUser_account(String user_account) {
         this.user_account = user_account;
+=======
+    public FeedBack(){}
+
+    public FeedBack(int code, String message) {
+        this.code = code;
+        this.message = message;
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
     }
     public int getCode() {
         return code;

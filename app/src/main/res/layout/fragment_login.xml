@@ -41,7 +41,10 @@
         </android.support.design.widget.TextInputLayout>
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
         <android.support.design.widget.TextInputLayout
             android:id="@+id/passwordlayout"
             android:layout_width="match_parent"
@@ -63,7 +66,10 @@
                 android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"

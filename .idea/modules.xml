@@ -3,7 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ToHeartByExpress.iml" filepath="$PROJECT_DIR$/ToHeartByExpress.iml" />
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/ToHeartByExpress-version1-2.5.iml" filepath="$PROJECT_DIR$/ToHeartByExpress-version1-2.5.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/ToHeartByExpress-master.iml" filepath="$PROJECT_DIR$/ToHeartByExpress-master.iml" />
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

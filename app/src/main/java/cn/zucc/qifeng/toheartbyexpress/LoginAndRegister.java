@@ -1,27 +1,38 @@
 package cn.zucc.qifeng.toheartbyexpress;
 
+<<<<<<< HEAD
 import android.app.Dialog;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+=======
+import android.os.Bundle;
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+<<<<<<< HEAD
 import android.support.v7.app.AlertDialog;
+=======
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+<<<<<<< HEAD
 import android.widget.CheckBox;
+=======
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+<<<<<<< HEAD
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -45,12 +56,34 @@ public class LoginAndRegister extends AppCompatActivity implements View.OnClickL
     private String user_account = null, user_password = null;
     private Dialog loginDialog;
 
+=======
+public class LoginAndRegister extends AppCompatActivity implements View.OnClickListener {
+    static final String TAG = "LoginAndResgister";
+    TextView forgotPassword;
+    EditText txtloginAccount, txtloginPassword;
+    FloatingActionButton tosingup;
+    Button loginbutton;
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_and_register);
 
+<<<<<<< HEAD
         initview();
+=======
+        forgotPassword = (TextView) findViewById(R.id.forgotpassword);
+
+        txtloginAccount = (EditText) findViewById(R.id.Loginaccount);
+        txtloginPassword = (EditText) findViewById(R.id.Loginpassword);
+        loginbutton= (Button) findViewById(R.id.buttonLogin);
+
+        tosingup = (FloatingActionButton) findViewById(R.id.fab);
+
+        forgotPassword.setOnClickListener(this);
+        loginbutton.setOnClickListener(this);
+        tosingup.setOnClickListener(this);
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
 
     }
 
@@ -71,6 +104,7 @@ public class LoginAndRegister extends AppCompatActivity implements View.OnClickL
                 Snackbar.make(v, "功能有待完善", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
                 break;
             case R.id.fab:
+<<<<<<< HEAD
                 //跳转到注册
                 replaceFragment(new SignUp_Fragment());
                 break;
@@ -113,11 +147,19 @@ public class LoginAndRegister extends AppCompatActivity implements View.OnClickL
                         Toast.makeText(LoginAndRegister.this, "账号、密码都不能为空！", Toast.LENGTH_SHORT).show();
                     }
                 }
+=======
+                replaceFragment(new SignUp_Fragment());
+                break;
+            case R.id.buttonLogin:
+//                Snackbar.make(v, "登录功能有待完善", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                MainActivity.StartMainActivity(this);
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
                 break;
             default:
                 break;
         }
     }
+<<<<<<< HEAD
 
     private void initview() {
         forgotPassword = (TextView) findViewById(R.id.forgotpassword);
@@ -155,4 +197,6 @@ public class LoginAndRegister extends AppCompatActivity implements View.OnClickL
         });
     }
 
+=======
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
 }

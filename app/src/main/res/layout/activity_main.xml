@@ -5,8 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipChildren="false"
+<<<<<<< HEAD
     tools:context="cn.zucc.qifeng.toheartbyexpress.MainActivity">
 
+=======
+    tools:context="cn.zucc.qifeng.toheartbyexpress.MainActivity"><![CDATA[
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    ]]>
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
 
     <RelativeLayout
         android:id="@+id/main_fragment"

@@ -26,7 +26,10 @@ import cn.zucc.qifeng.toheartbyexpress.Bean.User;
 import cn.zucc.qifeng.toheartbyexpress.ItemOfMepage.My_address;
 import cn.zucc.qifeng.toheartbyexpress.util.Constant;
 import cn.zucc.qifeng.toheartbyexpress.util.HttpUtil;
+<<<<<<< HEAD
 import me.drakeet.materialdialog.MaterialDialog;
+=======
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
 import okhttp3.Call;
 import okhttp3.Response;
 
@@ -41,7 +44,11 @@ public class SignUp_Fragment extends Fragment implements View.OnClickListener {
     private Button buttonsignup;
     private String responseData = "";
     private TextView testresponse;
+<<<<<<< HEAD
     MaterialDialog mMaterialDialog = new MaterialDialog(getActivity());
+=======
+
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,7 +76,11 @@ public class SignUp_Fragment extends Fragment implements View.OnClickListener {
                     //转换为json类型的字符串发送给服务器
                     User userlogin = new User(user_account,user_password,user_name);
                     String message = new Gson().toJson(userlogin);
+<<<<<<< HEAD
                     Log.d(TAG, "json格式的注册信息" + message);
+=======
+                    Log.d(TAG, "json格式的登录信息" + message);
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
 
                     HttpUtil.post(Constant.URL_Register, message, new okhttp3.Callback() {
                         @Override
@@ -84,9 +95,15 @@ public class SignUp_Fragment extends Fragment implements View.OnClickListener {
                             //这是在新开的一个线程里操作的
                             responseData = response.body().string();
                             Log.d(TAG, responseData);
+<<<<<<< HEAD
                             FeedBack registerfeedback = new Gson().fromJson(responseData, FeedBack.class);
 
                             showResponse(String.valueOf(registerfeedback.getMessage()));
+=======
+                            FeedBack loginfeedback = new Gson().fromJson(responseData, FeedBack.class);
+                            String showresponse = "code:" + loginfeedback.getCode() + "message:" + loginfeedback.getMessage();
+                            showResponse(showresponse);
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
 
                         }
                     });
@@ -113,8 +130,13 @@ public class SignUp_Fragment extends Fragment implements View.OnClickListener {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
+<<<<<<< HEAD
                 Toast.makeText(getActivity(),response,Toast.LENGTH_LONG).show();
 
+=======
+                Toast.makeText(getActivity(),response,Toast.LENGTH_SHORT).show();
+                testresponse.setText(response);
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
             }
         });
     }

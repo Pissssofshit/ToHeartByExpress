@@ -10,7 +10,10 @@
     <!--<color name="background">#8073c4</color>-->
     <color name="cyan">#B2EBF2</color>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
     <color name="darkgrey"> #C0C0C0</color>
     <color name="green">#AED581</color>
     <color name="grenn_darker">#558B2F</color>
@@ -19,4 +22,36 @@
 
     <color name="white">#FFFFFF</color>
     <color name="purple">#9C27B0</color>
+<<<<<<< HEAD
+=======
+    <color name="grey"> #ebebeb</color>
+
+
+
+    <color name="red"> #FF0000</color>
+    <color name="f850_default_blue">#0079ff</color>
+
+    <drawable name="transparent">#00000000</drawable>
+    <color name="transparent">#00000000</color>
+
+
+    <color name="header_toast_bg">#ccebfc</color>
+    <color name="header_toast">#024ca1</color>
+    <color name="header_toast_line">#abdaf4</color>
+    <color name="offline_down_title">#909090</color>
+    <color name="offline_head_font">#FFFFFF</color>
+    <color name="gary">#898989</color>
+    <color name="taobao_black">#333333</color>
+    <color name="offline_down_size">#777777</color>
+    <color name="gray_lite">#c5c5c5</color>
+    <color name="progress_background">#ededed</color>
+    <color name="blue">#4c90f9</color>
+
+    <color name="act_background">#efefef</color>
+    <color name="phone_bg">#f6f6f6</color>
+    <color name="translucent">#66000000</color>
+    <color name="color666">#661B85FF</color>
+    <color name="color_1B85FF">#1B85FF</color>
+
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
 </resources>

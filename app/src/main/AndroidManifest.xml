@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.zucc.qifeng.toheartbyexpress">
+<<<<<<< HEAD
 
     <!-- Normal Permissions 不需要运行时注册 -->
     <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
@@ -8,6 +9,14 @@
     <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+=======
+    <!-- Normal Permissions 不需要运行时注册 -->
+    <!--获取运营商信息，用于支持提供运营商信息相关的接口-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--用于访问wifi网络信息，wifi信息会用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!--这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
 
@@ -17,6 +26,7 @@
     <!-- 不是SDK需要的权限，是示例中的后台唤醒定位需要的权限 -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
+<<<<<<< HEAD
     <!-- 需要运行时注册的权限 -->
     <!-- 用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -30,6 +40,22 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <!-- 用于读取手机当前的状态 -->
+=======
+
+    <!-- 需要运行时注册的权限 -->
+    <!--用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!--用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!--用于提高GPS定位速度-->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <!--写入扩展存储，向扩展卡写入数据，用于写入缓存定位数据-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--读取缓存数据-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!--用于读取手机当前的状态-->
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <!-- 更改设置 -->
@@ -37,11 +63,19 @@
 
     <!-- 3.2.0版本增加 -->
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+<<<<<<< HEAD
     <!-- 3.2.0版本增加 -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+=======
+    <!-- 3.2.0版本增加-->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -51,6 +85,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+<<<<<<< HEAD
         <!-- <receiver android:name=".ItemOfMepage.My_address$MyReceiver" -->
         <!-- android:enabled="true" -->
         <!-- android:exported="true"> -->
@@ -83,6 +118,13 @@
         <service android:name=".service.testservice" />
         <service android:name=".service.postionservice" />
         <service android:name=".service.sendpostion" />
+=======
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="f194d07ee12c9a84ed7b17e7733ab3ea"></meta-data>
+        <service android:name="com.amap.api.location.APSService"></service>
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
 
         <activity android:name=".LoginAndRegister">
             <intent-filter>
@@ -90,6 +132,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
         </activity>
         <activity
             android:name=".MainActivity"
@@ -99,6 +145,7 @@
         <activity android:name=".ItemOfMepage.My_address" />
         <activity android:name=".ItemOfMepage.My_checkupdate" />
         <activity android:name=".ItemOfMepage.My_suggestion" />
+<<<<<<< HEAD
         <activity
             android:name=".PushTask.PublishTask"
             android:windowSoftInputMode="stateHidden|adjustPan" />
@@ -106,6 +153,10 @@
         <activity android:name=".PushTask.UserDetails"></activity>
         <activity android:name=".PushTask.testdis"></activity>
         <activity android:name=".PushTask.testdis2"></activity>
+=======
+        <activity android:name=".itemOfHomepage.PublishTask"></activity>
+        <activity android:name=".gdmap.gdmap.poisearch.PoiKeywordSearchActivity"></activity>
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
     </application>
 
 </manifest>

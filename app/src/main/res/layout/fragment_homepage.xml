@@ -20,7 +20,20 @@
             android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways" />
 
+<<<<<<< HEAD
 
+=======
+        <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:id="@+id/publishtask"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:src="@drawable/add_icon_white"-->
+            <!--app:backgroundTint="@color/green" />-->
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
 
         <android.support.v7.widget.RecyclerView
 

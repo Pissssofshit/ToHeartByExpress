@@ -17,7 +17,11 @@
     <tab
         activeColor="@color/grenn_darker"
         icon="@drawable/icon_chat"
+<<<<<<< HEAD
         title="消息"
+=======
+        title="聊天"
+>>>>>>> 2938fddd106178d9413369b5d29bee5d17bdbf3d
         id="@+id/tab_chat" />
     <tab
         activeColor="@color/grenn_darker"
