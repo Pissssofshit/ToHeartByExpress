@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+
+    <tab
+        activeColor="@color/grenn_darker"
+        icon="@drawable/icon_share"
+        title="主页"
+        id="@+id/tab_homepage" />
+    <tab
+        activeColor="@color/grenn_darker"
+        icon="@drawable/icon_map"
+        title="附近"
+        id="@+id/tab_map" />
+    <tab
+        id="@+id/tab_null"
+        />
+    <tab
+        activeColor="@color/grenn_darker"
+        icon="@drawable/icon_chat"
+        title="消息"
+        id="@+id/tab_chat" />
+    <tab
+        activeColor="@color/grenn_darker"
+        icon="@drawable/icon_me"
+        title="我的"
+        id="@+id/tab_me" />
+
+
+</tabs>
