@@ -15,7 +15,11 @@ import android.support.v7.app.NotificationCompat;
 
 /**
  * Created by 80421 on 2017/5/31.
+ * 用来发通知栏
  */
+
+
+
 
 public class BaseActivity extends AppCompatActivity {
     NotificationManager manager=null;

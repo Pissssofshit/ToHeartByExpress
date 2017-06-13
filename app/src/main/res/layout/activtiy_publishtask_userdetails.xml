@@ -216,7 +216,7 @@
                 android:id="@+id/userdetails_finishhour"
                 android:layout_width="30dp"
                 android:layout_height="match_parent"
-                android:hint="18"
+
                 android:inputType="number"
 
                 android:maxLength="2" />
@@ -230,7 +230,7 @@
                 android:id="@+id/userdetails_finishminutes"
                 android:layout_width="30dp"
                 android:layout_height="match_parent"
-                android:hint="00"
+
                 android:inputType="number"
                 android:maxLength="2" />
             <TextView

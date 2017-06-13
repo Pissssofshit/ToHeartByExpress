@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -30,6 +31,22 @@ public class UserDetails extends AppCompatActivity implements View.OnClickListen
     private String savedphone, savedcity, savedstreet, savedaddress;
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==1)
+        {
+
+            city.setText(data.getStringExtra("quhao"));
+
+        }
+        else if(requestCode==2)
+        {
+           street.setText(data.getStringExtra("jiedao"));
+
+        }
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activtiy_publishtask_userdetails);
@@ -49,13 +66,26 @@ public class UserDetails extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.userdetails_citylayout:
-                Toast.makeText(UserDetails.this, "所在地区", Toast.LENGTH_SHORT).show();
+                intent=new Intent(UserDetails.this,testdis.class);
+                intent.putExtra("code",1);
+                startActivityForResult(intent,1);
+                //Toast.makeText(UserDetails.this, "所在地区", Toast.LENGTH_SHORT).show();
                 break;
+
             case R.id.userdetails_streetlayout:
-                Toast.makeText(UserDetails.this, "街道", Toast.LENGTH_SHORT).show();
+                if(!"".equals(city.getText().toString())) {
+                    intent = new Intent(UserDetails.this, testdis2.class);
+                    intent.putExtra("quhaos",city.getText().toString());
+
+                    startActivityForResult(intent, 2);
+                }
                 break;
             case R.id.userdetails_save:
                 //储存本次操作的内容
+                if (!"".equals(phone.getText().toString())&&!"请选择".equals(city.getText().toString())&&!"请选择".equals(street.getText().toString())
+                        &&!"".equals(address.getText().toString())&&!"".equals(finishhour.getText().toString())&&!"".equals(finishhour.getText().toString())){
+
+
                 editor = saveuserinformation.edit();
                 editor.putString("phone", phone.getText().toString());
                 editor.putString("city", city.getText().toString());
@@ -76,8 +106,13 @@ public class UserDetails extends AppCompatActivity implements View.OnClickListen
                 intent.putExtra("userdetails", userdetails);
                 setResult(2, intent);
                 finish();
+                }
+                else {
+                    Toast.makeText(this,"请填写完整",Toast.LENGTH_SHORT).show();
+                }
                 //Toast.makeText(this, phone.getText().toString(), Toast.LENGTH_SHORT).show();
                 break;
+
         }
     }
 

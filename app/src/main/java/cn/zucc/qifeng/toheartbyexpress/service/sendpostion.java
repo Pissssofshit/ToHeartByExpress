@@ -38,7 +38,9 @@ public class sendpostion extends Service {
     private AMapLocationClient locationClient = null;
     private AMapLocationClientOption locationOption = null;
     private SeekTask seekTask = null;
-    private static int isSendbroad=0;
+    private static int isSendbroad = 0;
+
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -60,19 +62,19 @@ public class sendpostion extends Service {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final Intent intent=new Intent("cn.seekpostionbroadcast");
+                final Intent intent = new Intent("cn.seekpostionbroadcast");
                 initLocation();
-                while (isBackgroud.isAppInForeground(mContext)&&isSendbroad==0){
-                    Log.d(TAG,Thread.currentThread()+"");
-                    Log.d(TAG,"flag="+isSendbroad);
-                   //测试用
-                   // sendBroadcast(intent);
+                while (isBackgroud.isAppInForeground(mContext) && isSendbroad == 0) {
+                    Log.d(TAG, Thread.currentThread() + "");
+                    Log.d(TAG, "flag=" + isSendbroad);
+                    //测试用
+                    // sendBroadcast(intent);
 
                     startLocation();
                     if (seekTask != null) {
-                        seekTask.setUser_account(intent.getStringExtra("user_account"));
-                        Log.d(TAG,"seekTask user_account:"+seekTask.getUser_account());
-                        String message=new Gson().toJson(seekTask);
+//                        seekTask.setUser_account(intent.getStringExtra("user_account"));
+//                        Log.d(TAG,"seekTask user_account:"+seekTask.getUser_account());
+                        String message = new Gson().toJson(seekTask);
                         Log.d(TAG, "json格式的用户信息" + message);
                         HttpUtil.post(Constant.URL_SearchTask, message, new okhttp3.Callback() {
                             @Override
@@ -87,13 +89,12 @@ public class sendpostion extends Service {
                                 //这是在新开的一个线程里操作的
                                 String responseData = response.body().string();
                                 Log.d(TAG, responseData);
-                                 FeedBack loginfeedback = new Gson().fromJson(responseData, FeedBack.class);
-                                if("140".equals(loginfeedback.getCode())){
-                                    Log.d(TAG,"flag2="+isSendbroad);
+                                FeedBack loginfeedback = new Gson().fromJson(responseData, FeedBack.class);
+                                if ("140".equals(loginfeedback.getCode())) {
+                                    Log.d(TAG, "flag2=" + isSendbroad);
                                     sendBroadcast(intent);
-                                    isSendbroad=1;
+                                    isSendbroad = 1;
                                 }
-
                             }
                         });
                     }
@@ -209,7 +210,8 @@ public class sendpostion extends Service {
                     sb[2].append(location.getAddress());
                     sb[3].append(location.getCity());
 
-                    seekTask = new SeekTask(sb[0].toString(), sb[1].toString(), sb[2].toString(), sb[3].toString());
+//                    seekTask = new SeekTask(sb[0].toString(), sb[1].toString(), sb[2].toString(), sb[3].toString());
+                        seekTask=new SeekTask(Double.valueOf(sb[0].toString()),Double.valueOf(sb[1].toString()));
 //                    sb.append("经度:" + location.getLongitude() + "\n");
 //                    sb.append("纬度:" + location.getLatitude() + "\n");
 //                    sb.append("地址:" + location.getAddress() + "\n");

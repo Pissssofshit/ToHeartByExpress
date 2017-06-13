@@ -74,6 +74,14 @@
                 <action android:name="cn.seekpostionbroadcast" />
             </intent-filter>
         </receiver>
+        <!--<receiver-->
+            <!--android:name=".MapFragment$MyReceiver"-->
+            <!--android:enabled="true"-->
+            <!--android:exported="true">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="cn.zucc.qifeng.toheartbyexpress.MylocBroadcastReceiver" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
@@ -99,6 +107,8 @@
         <activity android:name=".ItemOfMepage.My_address" />
         <activity android:name=".ItemOfMepage.My_checkupdate" />
         <activity android:name=".ItemOfMepage.My_suggestion" />
+        <activity android:name=".PushTask.testdis"></activity>
+        <activity android:name=".PushTask.testdis2"></activity>
         <activity
             android:name=".PushTask.PublishTask"
             android:windowSoftInputMode="stateHidden|adjustPan" />

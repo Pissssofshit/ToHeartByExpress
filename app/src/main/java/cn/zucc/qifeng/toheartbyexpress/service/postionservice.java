@@ -25,6 +25,8 @@ public class postionservice extends Service {
     private static int count1 = 0;
 
     private static String loc = "柯桥";
+    private static double longitude=0;
+    private static double latitude=0;
     private Context mContext = this;
     private AMapLocationClient locationClient = null;
     private AMapLocationClientOption locationOption = null;
@@ -52,6 +54,8 @@ public class postionservice extends Service {
                         startLocation();
                         Log.d(TAG,loc+"");
                         intent.putExtra("loc",loc);
+                        intent.putExtra("longitude",longitude);
+                        intent.putExtra("latitude",latitude);
                         sendBroadcast(intent);
                         //设置更新间隔时间
                         if (i<3){
@@ -166,9 +170,12 @@ public class postionservice extends Service {
         public void onLocationChanged(AMapLocation location) {
             if (null != location) {
                 StringBuffer sb = new StringBuffer();
+                StringBuffer []ss=new StringBuffer[2];
                 //errCode等于0代表定位成功，其他的为定位失败，具体的可以参照官网定位错误码说明
                 if (location.getErrorCode() == 0) {
                     sb.append( location.getCity() );//城市
+                    ss[0].append(location.getLongitude());//精度
+                    ss[1].append(location.getLatitude());
                 } else {
                     //定位失败
                     sb.append("定位失败" + "\n");
@@ -179,7 +186,8 @@ public class postionservice extends Service {
                 //解析定位结果，
                 String result = sb.toString();
                 loc=result;
-
+                longitude=Double.valueOf(ss[0].toString());
+                latitude=Double.valueOf(ss[1].toString());
             } else {
 
                 loc="定位失败";

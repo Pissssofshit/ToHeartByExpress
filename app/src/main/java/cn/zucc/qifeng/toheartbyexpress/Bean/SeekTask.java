@@ -5,65 +5,29 @@ package cn.zucc.qifeng.toheartbyexpress.Bean;
  */
 
 public class SeekTask {
-    private String  longitude;
-    private String latitude;
-    private String city;
-    private String address;
-    private String user_account;
+    private double longitude;
+    private double latitude;
 
-    public SeekTask(String longitude, String latitude, String address, String city) {
+    public SeekTask(double longitude, double latitude) {
         this.longitude = longitude;
         this.latitude = latitude;
-        this.address = address;
-        this.city = city;
 
     }
 
-
-
-
-    public SeekTask() {
-    }
-    public String getUser_account() {
-        return user_account;
-    }
-
-    public void setUser_account(String user_account) {
-        this.user_account = user_account;
-    }
-    public String getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
-    public String getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-
-
 
 }

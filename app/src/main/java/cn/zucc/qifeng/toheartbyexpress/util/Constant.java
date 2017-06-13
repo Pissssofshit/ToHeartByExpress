@@ -12,6 +12,7 @@ public class Constant {
     public static final String URL_Login = URL + "LoginServlet";
     public static final String URL_SearchTask=URL+"SearchTask";
     public static final String URL_PublishTask="PublishTask";
+    public static final String URL_GetTask="GetTask";
     public static final String postionserviceaddress="cn.zucc.qifeng.toheartbyexpress.service.postionservice";
     public static final String sendposiontservice="cn.zucc.qifeng.toheartbyexpress.service.sendpostion";
 

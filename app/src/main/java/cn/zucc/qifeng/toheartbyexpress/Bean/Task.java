@@ -9,16 +9,16 @@ import java.util.List;
 
 public class Task {
 
-    private String user_account;
-    private String user_address;
-    private String user_phone;
+    protected String user_account;
+    protected String user_address;
+    protected String user_phone;
 
-    private List<PurchaseItem> purcharseList;
-    private double sum;
-    private double longitude;
-    private double latitude;
-    private String deadline;
-    private String storename;
+    protected List<PurchaseItem> purcharseList;
+    protected double sum;
+    protected double longitude;
+    protected double latitude;
+    protected String deadline;
+    protected String storename;
 
 
     public Task(String user_account, String user_address, String user_phone, List<PurchaseItem> purcharseList,
