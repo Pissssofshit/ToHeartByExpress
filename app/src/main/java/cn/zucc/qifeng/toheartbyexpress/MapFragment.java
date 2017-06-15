@@ -30,6 +30,7 @@ import java.util.zip.Inflater;
 import cn.zucc.qifeng.toheartbyexpress.Bean.PurchaseItem;
 import cn.zucc.qifeng.toheartbyexpress.Bean.SeekTask;
 import cn.zucc.qifeng.toheartbyexpress.Bean.Task;
+import cn.zucc.qifeng.toheartbyexpress.itemOfNear.AcceptTask;
 import cn.zucc.qifeng.toheartbyexpress.itemOfNear.RecyclerVIewAdapterForTask;
 import cn.zucc.qifeng.toheartbyexpress.util.Constant;
 import cn.zucc.qifeng.toheartbyexpress.util.HttpUtil;
@@ -63,7 +64,10 @@ public class MapFragment extends Fragment {
         adapterForTask.setOnItemClickListener(new RecyclerVIewAdapterForTask.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(getContext(), "click " + position  , Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "click " + position  , Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getContext(), AcceptTask.class);
+                intent.putExtra("test","mytest");
+                startActivity(intent);
             }
         });
         return view;
@@ -155,8 +159,8 @@ public class MapFragment extends Fragment {
         PurchaseItem item1=new  PurchaseItem("item2","somedetails",10,10);
         purchaseItemList.add(item);
         purchaseItemList1.add(item1);
-        mapTask task1=new mapTask(1,"task1","taskpublishuser","1234567",purchaseItemList,1,"10:50前","清风",20);
-        mapTask task2=new mapTask(1,"task1","taskpublishuser","1234567",purchaseItemList1,1,"10:50前","清风",20);
+        mapTask task1=new mapTask(1,"task1","taskpublishuser","1234567",purchaseItemList,1,"10:50","清风",20);
+        mapTask task2=new mapTask(1,"task1","taskpublishuser","1234567",purchaseItemList1,1,"10:50","清风",20);
         tasklist=new ArrayList<>();
         tasklist.add(task1);
         tasklist.add(task2);
